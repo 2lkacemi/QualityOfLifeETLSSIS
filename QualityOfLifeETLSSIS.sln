@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "QualityOfLifeETLSSIS", "QualityOfLifeETLSSIS\QualityOfLifeETLSSIS.dtproj", "{583915C3-35BE-442C-BBAD-F14DB733653E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{583915C3-35BE-442C-BBAD-F14DB733653E}.Development|Default.ActiveCfg = Development
+		{583915C3-35BE-442C-BBAD-F14DB733653E}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {757A11C7-8F04-4DC8-8986-7FFF3C01DD06}
+	EndGlobalSection
+EndGlobal
