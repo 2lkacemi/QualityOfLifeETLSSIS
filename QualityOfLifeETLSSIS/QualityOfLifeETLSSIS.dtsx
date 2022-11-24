@@ -11,8 +11,8 @@
   DTS:LocaleID="1036"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{7AB78CF6-0606-4961-8CDA-79C88412D019}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{07D1FB3A-69DE-445B-8EF1-A795223E481F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1279,6 +1279,286 @@
               </outputs>
             </component>
             <component
+              refId="Package\import fact_qualityOfLife Data\City"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="City"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[dim_city]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[dim_city]) [refTable]
+where [refTable].[city_name] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_city" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="city_name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of City]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\import fact_qualityOfLife Data\City.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-HLK1VMI]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-HLK1VMI]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\import fact_qualityOfLife Data\City.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\City.Inputs[Entrée de recherche].Columns[Copy of City]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of City"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of City]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">city_name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\City.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie de recherche avec correspondance].Columns[id_city]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie de recherche avec correspondance].Columns[id_city]"
+                      name="id_city"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">id_city</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\City.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\City.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\import fact_qualityOfLife Data\city_indicators"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="city_indicators"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml"></property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\import fact_qualityOfLife Data\city_indicators.Connections[OleDbConnection]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\import fact_qualityOfLife Data\city_indicators.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\city_indicators.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\city_indicators.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\city_indicators.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\city_indicators.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\city_indicators.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\city_indicators.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\city_indicators.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\city_indicators.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\city_indicators.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\city_indicators.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\import fact_qualityOfLife Data\Conversion de données"
               componentClassID="Microsoft.DataConvert"
               contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
@@ -1290,20 +1570,6 @@
                   refId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données]"
                   name="Entrée de conversion de données">
                   <inputColumns>
-                    <inputColumn
-                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données].Columns[City]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="City"
-                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]" />
-                    <inputColumn
-                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données].Columns[Country]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Country"
-                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]" />
                     <inputColumn
                       refId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données].Columns[Quality of Life Index]"
                       cachedCodepage="65001"
@@ -1367,6 +1633,20 @@
                       cachedLength="50"
                       cachedName="Climate Index"
                       lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Climate Index]" />
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données].Columns[City]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="City"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]" />
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données].Columns[Country]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Country"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1378,48 +1658,6 @@
                   name="Sortie de conversion de données"
                   synchronousInputId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données]">
                   <outputColumns>
-                    <outputColumn
-                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[City]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[City]"
-                      name="City"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
-                          name="SourceInputColumnLineageID">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Country]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Country]"
-                      name="Country"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
-                          name="SourceInputColumnLineageID">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
                     <outputColumn
                       refId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Quality of Life Index]"
                       dataType="r4"
@@ -1600,6 +1838,48 @@
                           name="FastParse">false</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of City]"
+                      name="Copy of City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Country]"
+                      name="Copy of Country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1620,6 +1900,165 @@
                       refId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\import fact_qualityOfLife Data\Country"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Country"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[dim_country]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[dim_country]) [refTable]
+where [refTable].[country_name] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_country" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="country_name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Country]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\import fact_qualityOfLife Data\Country.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-HLK1VMI]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-HLK1VMI]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\import fact_qualityOfLife Data\Country.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Country.Inputs[Entrée de recherche].Columns[Copy of Country]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Country"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Country]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">country_name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\Country.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie de recherche avec correspondance].Columns[id_country]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie de recherche avec correspondance].Columns[id_country]"
+                      name="id_country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">id_country</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\Country.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\import fact_qualityOfLife Data\Country.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1658,50 +2097,6 @@
                   refId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat]"
                   name="Sortie de source de fichier plat">
                   <outputColumns>
-                    <outputColumn
-                      refId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].ExternalColumns[City]"
-                      length="50"
-                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]"
-                      name="City"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indique si les données sont au format binaire."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]"
-                      codePage="65001"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].ExternalColumns[Country]"
-                      length="50"
-                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]"
-                      name="Country"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indique si les données sont au format binaire."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
                     <outputColumn
                       refId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Quality of Life Index]"
                       codePage="65001"
@@ -1900,6 +2295,50 @@
                           name="UseBinaryFormat">false</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].ExternalColumns[Country]"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].ExternalColumns[City]"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2007,140 +2446,1169 @@
               </outputs>
             </component>
             <component
-              refId="Package\import fact_qualityOfLife Data\Recherche"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
-              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
-              name="Recherche"
-              usesDispositions="true"
-              version="6">
+              refId="Package\import fact_qualityOfLife Data\Jointure de fusion"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Jointure de fusion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Combine deux flux de données triés en un seul à l'aide de la jointure FULL, LEFT ou INNER. Nous recommandons cette transformation lorsque les flux de données peuvent être triés au niveau de leurs sources."
+              name="Jointure de fusion"
+              version="1">
               <properties>
                 <property
-                  dataType="System.String"
-                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[dim_city]</property>
+                  dataType="System.Int32"
+                  description="Spécifie le type de jointure à effectuer."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre de colonnes dans la clé de tri."
+                  name="NumKeyColumns">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs NULL sont traitées comme valeurs égales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indique le nombre maximal de mémoires tampons demandées par entrée avant blocage."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\import fact_qualityOfLife Data\Jointure de fusion.Inputs[Entrée gauche de jointure de fusion]"
+                  hasSideEffects="true"
+                  name="Entrée gauche de jointure de fusion">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Jointure de fusion.Inputs[Entrée gauche de jointure de fusion].Columns[Copy of City]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of City"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Copy of City]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\import fact_qualityOfLife Data\Jointure de fusion.Inputs[Entrée droite de jointure de fusion]"
+                  hasSideEffects="true"
+                  name="Entrée droite de jointure de fusion">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Jointure de fusion.Inputs[Entrée droite de jointure de fusion].Columns[city_name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="city_name"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[city_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\Jointure de fusion.Outputs[Sortie de jointure de fusion]"
+                  name="Sortie de jointure de fusion">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\import fact_qualityOfLife Data\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
                 <property
                   dataType="System.String"
-                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[dim_city_indicators]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
-                  dataType="System.Int32"
-                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Spécifie le type de cache de la table de correspondance."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
-                  name="MaxMemoryUsage64">25</property>
-                <property
                   dataType="System.String"
-                  description="Indique si les métadonnées sont à référencer en format XML."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_city" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="city_name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
-                  name="ParameterMap"></property>
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
                 <property
                   dataType="System.Int32"
                   description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
                   name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
-                  name="TreatDuplicateKeysAsError">false</property>
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\import fact_qualityOfLife Data\Recherche.Connections[OleDbConnection]"
+                  refId="Package\import fact_qualityOfLife Data\Source OLE DB.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[DESKTOP-HLK1VMI]"
                   connectionManagerRefId="Package.ConnectionManagers[DESKTOP-HLK1VMI]"
-                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
+              <outputs>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_city_indicator]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[id_city_indicator]"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_city_indicator]"
+                      name="id_city_indicator"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[city_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[city_name]"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[city_name]"
+                      name="city_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[population_city]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[population_city]"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[population_city]"
+                      name="population_city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[year]"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[year]"
+                      name="year"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[id_city_indicator]"
+                      dataType="i4"
+                      name="id_city_indicator" />
+                    <externalMetadataColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[city_name]"
+                      dataType="wstr"
+                      length="50"
+                      name="city_name" />
+                    <externalMetadataColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[population_city]"
+                      dataType="i8"
+                      name="population_city" />
+                    <externalMetadataColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[year]"
+                      dataType="i4"
+                      name="year" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[id_city_indicator]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[id_city_indicator]"
+                      name="id_city_indicator" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[city_name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[city_name]"
+                      name="city_name" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[population_city]"
+                      dataType="i8"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[population_city]"
+                      name="population_city" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[year]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[year]"
+                      name="year" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\import fact_qualityOfLife Data\Trie Country"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trie Country"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
               <inputs>
                 <input
-                  refId="Package\import fact_qualityOfLife Data\Recherche.Inputs[Entrée de recherche]"
-                  name="Entrée de recherche">
+                  refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Quality of Life Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Quality of Life Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Quality of Life Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Purchasing Power Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Purchasing Power Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Purchasing Power Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Safety Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Safety Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Safety Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Health Care Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Health Care Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Health Care Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Cost of Living Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Cost of Living Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Cost of Living Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Property Price to Income Ratio]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Property Price to Income Ratio"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Property Price to Income Ratio]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Traffic Commute Time Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Traffic Commute Time Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Traffic Commute Time Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Pollution Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Pollution Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Pollution Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Climate Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Climate Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Climate Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Country]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Country"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[City]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="City"
+                      lineageId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Quality of Life Index1]"
+                      cachedDataType="r4"
+                      cachedName="Quality of Life Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Quality of Life Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Purchasing Power Index1]"
+                      cachedDataType="r4"
+                      cachedName="Purchasing Power Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Purchasing Power Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Safety Index1]"
+                      cachedDataType="r4"
+                      cachedName="Safety Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Safety Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Health Care Index1]"
+                      cachedDataType="r4"
+                      cachedName="Health Care Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Health Care Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Cost of Living Index1]"
+                      cachedDataType="r4"
+                      cachedName="Cost of Living Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Cost of Living Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Property Price to Income Ratio1]"
+                      cachedDataType="r4"
+                      cachedName="Property Price to Income Ratio"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Property Price to Income Ratio]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Traffic Commute Time Index1]"
+                      cachedDataType="r4"
+                      cachedName="Traffic Commute Time Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Traffic Commute Time Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Pollution Index1]"
+                      cachedDataType="r4"
+                      cachedName="Pollution Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Pollution Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Climate Index1]"
+                      cachedDataType="r4"
+                      cachedName="Climate Index"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Climate Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Copy of City]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of City"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of City]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[Copy of Country]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Country"
+                      lineageId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Country]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[id_city]"
+                      cachedDataType="i4"
+                      cachedName="id_city"
+                      lineageId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie de recherche avec correspondance].Columns[id_city]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri].Columns[id_country]"
+                      cachedDataType="i4"
+                      cachedName="id_country"
+                      lineageId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie de recherche avec correspondance].Columns[id_country]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie de recherche avec correspondance]"
-                  errorOrTruncationOperation="Recherche"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Sortie de recherche avec correspondance"
-                  synchronousInputId="Package\import fact_qualityOfLife Data\Recherche.Inputs[Entrée de recherche]">
+                  refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[city_name]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Copie de colonnes"
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Quality of Life Index]"
+                      codePage="65001"
+                      dataType="str"
                       length="50"
-                      lineageId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie de recherche avec correspondance].Columns[city_name]"
-                      name="city_name"
-                      truncationRowDisposition="FailComponent">
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Quality of Life Index]"
+                      name="Extract QualityofLife Data.Quality of Life Index">
                       <properties>
                         <property
-                          dataType="System.String"
-                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
-                          name="CopyFromReferenceColumn">city_name</property>
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Quality of Life Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Purchasing Power Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Purchasing Power Index]"
+                      name="Extract QualityofLife Data.Purchasing Power Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Purchasing Power Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Safety Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Safety Index]"
+                      name="Extract QualityofLife Data.Safety Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Safety Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Health Care Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Health Care Index]"
+                      name="Extract QualityofLife Data.Health Care Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Health Care Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Cost of Living Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Cost of Living Index]"
+                      name="Extract QualityofLife Data.Cost of Living Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Cost of Living Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Property Price to Income Ratio]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Property Price to Income Ratio]"
+                      name="Extract QualityofLife Data.Property Price to Income Ratio">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Property Price to Income Ratio]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Traffic Commute Time Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Traffic Commute Time Index]"
+                      name="Extract QualityofLife Data.Traffic Commute Time Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Traffic Commute Time Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Pollution Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Pollution Index]"
+                      name="Extract QualityofLife Data.Pollution Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Pollution Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Climate Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Extract QualityofLife Data.Climate Index]"
+                      name="Extract QualityofLife Data.Climate Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Climate Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Country]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Country]"
+                      name="Country">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[Country]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[City]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[City]"
+                      name="City">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat].Columns[City]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Quality of Life Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Quality of Life Index]"
+                      name="Conversion de données.Quality of Life Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Quality of Life Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Purchasing Power Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Purchasing Power Index]"
+                      name="Conversion de données.Purchasing Power Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Purchasing Power Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Safety Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Safety Index]"
+                      name="Conversion de données.Safety Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Safety Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Health Care Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Health Care Index]"
+                      name="Conversion de données.Health Care Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Health Care Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Cost of Living Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Cost of Living Index]"
+                      name="Conversion de données.Cost of Living Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Cost of Living Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Property Price to Income Ratio]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Property Price to Income Ratio]"
+                      name="Conversion de données.Property Price to Income Ratio">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Property Price to Income Ratio]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Traffic Commute Time Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Traffic Commute Time Index]"
+                      name="Conversion de données.Traffic Commute Time Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Traffic Commute Time Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Pollution Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Pollution Index]"
+                      name="Conversion de données.Pollution Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Pollution Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Climate Index]"
+                      dataType="r4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Conversion de données.Climate Index]"
+                      name="Conversion de données.Climate Index">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Climate Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Copy of City]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Copy of City]"
+                      name="Copy of City"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of City]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Copy of Country]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[Copy of Country]"
+                      name="Copy of Country">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Country]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[id_city]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[id_city]"
+                      name="id_city">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\City.Outputs[Sortie de recherche avec correspondance].Columns[id_city]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[id_country]"
+                      dataType="i4"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri].Columns[id_country]"
+                      name="id_country">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Country.Outputs[Sortie de recherche avec correspondance].Columns[id_country]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
-                <output
-                  refId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie de recherche sans correspondance]"
-                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
-                  exclusionGroup="1"
-                  name="Sortie de recherche sans correspondance"
-                  synchronousInputId="Package\import fact_qualityOfLife Data\Recherche.Inputs[Entrée de recherche]">
+              </outputs>
+            </component>
+            <component
+              refId="Package\import fact_qualityOfLife Data\Trie population"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trie population"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\import fact_qualityOfLife Data\Trie population.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Inputs[Entrée de tri].Columns[id_city_indicator]"
+                      cachedDataType="i4"
+                      cachedName="id_city_indicator"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_city_indicator]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Inputs[Entrée de tri].Columns[city_name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="city_name"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[city_name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Inputs[Entrée de tri].Columns[population_city]"
+                      cachedDataType="i8"
+                      cachedName="population_city"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[population_city]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Inputs[Entrée de tri].Columns[year]"
+                      cachedDataType="i4"
+                      cachedName="year"
+                      lineageId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[year]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
-                </output>
+                </input>
+              </inputs>
+              <outputs>
                 <output
-                  refId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie d'erreur de recherche]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Sortie d'erreur de recherche"
-                  synchronousInputId="Package\import fact_qualityOfLife Data\Recherche.Inputs[Entrée de recherche]">
+                  refId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[id_city_indicator]"
                       dataType="i4"
-                      lineageId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
+                      lineageId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[id_city_indicator]"
+                      name="id_city_indicator">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_city_indicator]}</property>
+                      </properties>
+                    </outputColumn>
                     <outputColumn
-                      refId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[city_name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[city_name]"
+                      name="city_name"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[city_name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[population_city]"
+                      dataType="i8"
+                      lineageId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[population_city]"
+                      name="population_city">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[population_city]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[year]"
                       dataType="i4"
-                      lineageId="Package\import fact_qualityOfLife Data\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
+                      lineageId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri].Columns[year]"
+                      name="year">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[year]}</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2150,7 +3618,7 @@
           <paths>
             <path
               refId="Package\import fact_qualityOfLife Data.Paths[Sortie de colonne dérivée]"
-              endId="Package\import fact_qualityOfLife Data\Recherche.Inputs[Entrée de recherche]"
+              endId="Package\import fact_qualityOfLife Data\City.Inputs[Entrée de recherche]"
               name="Sortie de colonne dérivée"
               startId="Package\import fact_qualityOfLife Data\calcul qaulityOflife Index.Outputs[Sortie de colonne dérivée]" />
             <path
@@ -2159,10 +3627,35 @@
               name="Sortie de conversion de données"
               startId="Package\import fact_qualityOfLife Data\Conversion de données.Outputs[Sortie de conversion de données]" />
             <path
+              refId="Package\import fact_qualityOfLife Data.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\import fact_qualityOfLife Data\Country.Inputs[Entrée de recherche]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\import fact_qualityOfLife Data\City.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\import fact_qualityOfLife Data.Paths[Sortie de recherche avec correspondance1]"
+              endId="Package\import fact_qualityOfLife Data\Trie Country.Inputs[Entrée de tri]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\import fact_qualityOfLife Data\Country.Outputs[Sortie de recherche avec correspondance]" />
+            <path
               refId="Package\import fact_qualityOfLife Data.Paths[Sortie de source de fichier plat]"
               endId="Package\import fact_qualityOfLife Data\Conversion de données.Inputs[Entrée de conversion de données]"
               name="Sortie de source de fichier plat"
               startId="Package\import fact_qualityOfLife Data\Extract QualityofLife Data.Outputs[Sortie de source de fichier plat]" />
+            <path
+              refId="Package\import fact_qualityOfLife Data.Paths[Sortie de source OLE DB]"
+              endId="Package\import fact_qualityOfLife Data\Trie population.Inputs[Entrée de tri]"
+              name="Sortie de source OLE DB"
+              startId="Package\import fact_qualityOfLife Data\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\import fact_qualityOfLife Data.Paths[Sortie de tri]"
+              endId="Package\import fact_qualityOfLife Data\Jointure de fusion.Inputs[Entrée gauche de jointure de fusion]"
+              name="Sortie de tri"
+              startId="Package\import fact_qualityOfLife Data\Trie Country.Outputs[Sortie de tri]" />
+            <path
+              refId="Package\import fact_qualityOfLife Data.Paths[Sortie de tri1]"
+              endId="Package\import fact_qualityOfLife Data\Jointure de fusion.Inputs[Entrée droite de jointure de fusion]"
+              name="Sortie de tri"
+              startId="Package\import fact_qualityOfLife Data\Trie population.Outputs[Sortie de tri]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -2689,10 +4182,6 @@
           Id="Package\import countries data"
           TopLeft="44.9999993294478,48.099999139905" />
         <NodeLayout
-          Size="189.333333333334,42.6666666666667"
-          Id="Package\import population cities"
-          TopLeft="65.6249990221113,120.249997849762" />
-        <NodeLayout
           Size="158.666666666667,42.6666666666667"
           Id="Package\import date data"
           TopLeft="104.374998444691,184.599996699095" />
@@ -2700,6 +4189,10 @@
           Size="221.333333333334,42.6666666666667"
           Id="Package\import fact_qualityOfLife Data"
           TopLeft="316.249995287508,153.399997256994" />
+        <NodeLayout
+          Size="189.333333333334,42.6666666666667"
+          Id="Package\import population cities"
+          TopLeft="65.6249990221113,120.249997849762" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2814,85 +4307,17 @@
           Id="Package\import countries data\source csv country"
           TopLeft="73.1249989103529,11.9833337866262" />
         <NodeLayout
-          Size="189.333333333334,42.6666666666667"
-          Id="Package\import countries data\Conversion de données"
-          TopLeft="285.902776758497,74.5333316131433" />
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\import countries data\delete duplicate"
+          TopLeft="381.666666666667,170.833333333333" />
         <NodeLayout
           Size="144,42.6666666666667"
           Id="Package\import countries data\Table country"
           TopLeft="93.194443055739,187.994441082842" />
-        <EdgeLayout
-          Id="Package\import countries data.Paths[Sortie de source de fichier plat]"
-          TopLeft="241.124998910353,33.3166671199595">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="44.7777778481441,62.5499978265171"
-              Start="0,0"
-              End="37.2777778481441,62.5499978265171">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="18.388888924072,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="18.388888924072,0"
-                    Point2="22.388888924072,0"
-                    Point3="22.388888924072,4" />
-                  <mssgle:LineSegment
-                    End="22.388888924072,58.5499978265171" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22.388888924072,58.5499978265171"
-                    Point2="22.388888924072,62.5499978265171"
-                    Point3="26.388888924072,62.5499978265171" />
-                  <mssgle:LineSegment
-                    End="37.2777778481441,62.5499978265171" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="154.666666666667,42.6666666666667"
-          Id="Package\import countries data\delete duplicate"
-          TopLeft="381.666666666667,170.833333333333" />
-        <EdgeLayout
-          Id="Package\import countries data.Paths[Sortie de conversion de données]"
-          TopLeft="380.569443425164,117.19999827981">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="78.4305565748363,53.6333350535233"
-              Start="0,0"
-              End="78.4305565748363,46.1333350535233">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.8166675267617" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.8166675267617"
-                    Point2="0,26.8166675267617"
-                    Point3="4,26.8166675267617" />
-                  <mssgle:LineSegment
-                    End="74.4305565748363,26.8166675267617" />
-                  <mssgle:CubicBezierSegment
-                    Point1="74.4305565748363,26.8166675267617"
-                    Point2="78.4305565748363,26.8166675267617"
-                    Point3="78.4305565748363,30.8166675267617" />
-                  <mssgle:LineSegment
-                    End="78.4305565748363,46.1333350535233" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="189.333333333334,42.6666666666667"
+          Id="Package\import countries data\Conversion de données"
+          TopLeft="285.902776758497,74.5333316131433" />
         <EdgeLayout
           Id="Package\import countries data.Paths[Sortie de tri]"
           TopLeft="381.666666666667,192.166666666667">
@@ -2927,6 +4352,74 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import countries data.Paths[Sortie de source de fichier plat]"
+          TopLeft="241.124998910353,33.3166671199595">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.7777778481441,62.5499978265171"
+              Start="0,0"
+              End="37.2777778481441,62.5499978265171">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.388888924072,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.388888924072,0"
+                    Point2="22.388888924072,0"
+                    Point3="22.388888924072,4" />
+                  <mssgle:LineSegment
+                    End="22.388888924072,58.5499978265171" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.388888924072,58.5499978265171"
+                    Point2="22.388888924072,62.5499978265171"
+                    Point3="26.388888924072,62.5499978265171" />
+                  <mssgle:LineSegment
+                    End="37.2777778481441,62.5499978265171" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import countries data.Paths[Sortie de conversion de données]"
+          TopLeft="380.569443425164,117.19999827981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="78.4305565748363,53.6333350535233"
+              Start="0,0"
+              End="78.4305565748363,46.1333350535233">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8166675267617" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8166675267617"
+                    Point2="0,26.8166675267617"
+                    Point3="4,26.8166675267617" />
+                  <mssgle:LineSegment
+                    End="74.4305565748363,26.8166675267617" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74.4305565748363,26.8166675267617"
+                    Point2="78.4305565748363,26.8166675267617"
+                    Point3="78.4305565748363,30.8166675267617" />
+                  <mssgle:LineSegment
+                    End="78.4305565748363,46.1333350535233" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2944,6 +4437,270 @@
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
+    design-time-name="Package\import fact_qualityOfLife Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="200,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\Extract QualityofLife Data"
+          TopLeft="31.9134618457979,24.9846155705819" />
+        <NodeLayout
+          Size="189.333333333334,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\Conversion de données"
+          TopLeft="184.871794871795,87.6923076923077" />
+        <NodeLayout
+          Size="196,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\calcul qaulityOflife Index"
+          TopLeft="316.410256410256,28.2346155124673" />
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de conversion de données]"
+          TopLeft="309.760683760684,87.6923076923077">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="6.64957264957218,-38.124358846507"
+              Start="0,0"
+              End="-0.850427350427822,-38.124358846507">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-34.124358846507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-34.124358846507"
+                    Point2="0,-38.124358846507"
+                    Point3="4,-38.124358846507" />
+                  <mssgle:LineSegment
+                    End="-0.850427350427822,-38.124358846507" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de source de fichier plat]"
+          TopLeft="231.913461845798,46.3179489039152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.4027774704415,41.3743587883925"
+              Start="0,0"
+              End="17.4027774704415,33.8743587883925">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="13.4027774704415,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.4027774704415,0"
+                    Point2="17.4027774704415,0"
+                    Point3="17.4027774704415,4" />
+                  <mssgle:LineSegment
+                    End="17.4027774704415,33.8743587883925" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="97.3333333333334,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\City"
+          TopLeft="554.374991739169,32.4999994188547" />
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de colonne dérivée]"
+          TopLeft="512.410256410256,51.7006407989944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.964735328913,0"
+              Start="0,0"
+              End="34.464735328913,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34.464735328913,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="116,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\Country"
+          TopLeft="549.374991813675,128.699997698665" />
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="605.208325109755,75.1666660855214">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.5333316131433"
+              Start="0,0"
+              End="0,46.0333316131433">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.0333316131433" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.67701171875,22.0869782193999,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="146.666666666667,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\city_indicators"
+          TopLeft="625.312490682118,345.474993822426" />
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\Source OLE DB"
+          TopLeft="686.249990779907,128.374997704476" />
+        <NodeLayout
+          Size="137.333333333334,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\Trie Country"
+          TopLeft="541.406241932418,200.604163601125" />
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\Trie population"
+          TopLeft="688.28123974381,203.041663557539" />
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de recherche avec correspondance1]"
+          TopLeft="608.72395020638,171.366664365331">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.237499235794"
+              Start="0,0"
+              End="0,21.737499235794">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.737499235794" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.67701171875,5.06406211789701,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de source OLE DB]"
+          TopLeft="762.598948595192,171.041664371143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.9999991863966"
+              Start="0,0"
+              End="0,24.4999991863966">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4999991863966" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\import fact_qualityOfLife Data\Jointure de fusion"
+          TopLeft="623.437490710057,271.291662337134" />
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de tri]"
+          TopLeft="610.072908599085,243.270830267792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="95.3645821109723,28.0208320693423"
+              Start="0,0"
+              End="95.3645821109723,20.5208320693423">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.0104160346712" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.0104160346712"
+                    Point2="0,14.0104160346712"
+                    Point3="4,14.0104160346712" />
+                  <mssgle:LineSegment
+                    End="91.3645821109723,14.0104160346712" />
+                  <mssgle:CubicBezierSegment
+                    Point1="91.3645821109723,14.0104160346712"
+                    Point2="95.3645821109723,14.0104160346712"
+                    Point3="95.3645821109723,18.0104160346712" />
+                  <mssgle:LineSegment
+                    End="95.3645821109723,20.5208320693423" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de tri1]"
+          TopLeft="763.614573077144,245.708330224206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32.1770823670865,25.5833321129283"
+              Start="0,0"
+              End="-32.1770823670865,18.0833321129283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.2016900960878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.2016900960878"
+                    Point2="0,15.2016900960878"
+                    Point3="-4,15.2016900960878" />
+                  <mssgle:LineSegment
+                    End="-28.1770823670865,15.2016900960878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.1770823670865,15.2016900960878"
+                    Point2="-32.1770823670865,15.2016900960878"
+                    Point3="-32.1770823670865,19.2016900960878" />
+                  <mssgle:LineSegment
+                    End="-32.1770823670865,18.0833321129283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
     design-time-name="Package\import population cities">
     <LayoutInfo>
       <GraphLayout
@@ -2960,40 +4717,6 @@
           Size="158.666666666667,42.6666666666667"
           Id="Package\import population cities\add column Year"
           TopLeft="317.5,176.666666666667" />
-        <EdgeLayout
-          Id="Package\import population cities.Paths[Sortie de colonne dérivée]"
-          TopLeft="396.833333333333,219.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="67.3333333333334,47.3333333333333"
-              Start="0,0"
-              End="67.3333333333334,39.8333333333333">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.6666666666667" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.6666666666667"
-                    Point2="0,23.6666666666667"
-                    Point3="4,23.6666666666667" />
-                  <mssgle:LineSegment
-                    End="63.3333333333334,23.6666666666667" />
-                  <mssgle:CubicBezierSegment
-                    Point1="63.3333333333334,23.6666666666667"
-                    Point2="67.3333333333334,23.6666666666667"
-                    Point3="67.3333333333334,27.6666666666667" />
-                  <mssgle:LineSegment
-                    End="67.3333333333334,39.8333333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="189.333333333334,42.6666666666667"
           Id="Package\import population cities\Conversion de données"
@@ -3066,6 +4789,40 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import population cities.Paths[Sortie de colonne dérivée]"
+          TopLeft="396.833333333333,219.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.3333333333334,47.3333333333333"
+              Start="0,0"
+              End="67.3333333333334,39.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.6666666666667"
+                    Point2="0,23.6666666666667"
+                    Point3="4,23.6666666666667" />
+                  <mssgle:LineSegment
+                    End="63.3333333333334,23.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.3333333333334,23.6666666666667"
+                    Point2="67.3333333333334,23.6666666666667"
+                    Point3="67.3333333333334,27.6666666666667" />
+                  <mssgle:LineSegment
+                    End="67.3333333333334,39.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -3082,110 +4839,8 @@
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\import fact_qualityOfLife Data">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="200,42.6666666666667"
-          Id="Package\import fact_qualityOfLife Data\Extract QualityofLife Data"
-          TopLeft="52.5384615384615,35.3846153846154" />
-        <NodeLayout
-          Size="196,42.6666666666667"
-          Id="Package\import fact_qualityOfLife Data\calcul qaulityOflife Index"
-          TopLeft="316.410256410256,35.3846153846154" />
-        <NodeLayout
-          Size="129.333333333334,42.6666666666667"
-          Id="Package\import fact_qualityOfLife Data\Recherche"
-          TopLeft="571.025641025641,40" />
-        <EdgeLayout
-          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de colonne dérivée]"
-          TopLeft="512.410256410256,59.025641025641">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="58.6153846153845,0"
-              Start="0,0"
-              End="51.1153846153845,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="51.1153846153845,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="189.333333333334,42.6666666666667"
-          Id="Package\import fact_qualityOfLife Data\Conversion de données"
-          TopLeft="184.871794871795,87.6923076923077" />
-        <EdgeLayout
-          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de source de fichier plat]"
-          TopLeft="252.538461538462,56.7179487179487">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="26.9999999999999,30.974358974359"
-              Start="0,0"
-              End="26.9999999999999,23.474358974359">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="22.9999999999999,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22.9999999999999,0"
-                    Point2="26.9999999999999,0"
-                    Point3="26.9999999999999,4" />
-                  <mssgle:LineSegment
-                    End="26.9999999999999,23.474358974359" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\import fact_qualityOfLife Data.Paths[Sortie de conversion de données]"
-          TopLeft="309.760683760684,87.6923076923077">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="6.64957264957269,-30.974358974359"
-              Start="0,0"
-              End="-0.85042735042731,-30.974358974359">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-26.974358974359" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-26.974358974359"
-                    Point2="0,-30.974358974359"
-                    Point3="4,-30.974358974359" />
-                  <mssgle:LineSegment
-                    End="-0.85042735042731,-30.974358974359" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\import fact_qualityOfLife Data\Recherche">
+    design-time-name="Package\import fact_qualityOfLife Data\City">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -3204,6 +4859,42 @@
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\import fact_qualityOfLife Data\Country">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[dim_country]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\import fact_qualityOfLife Data\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
